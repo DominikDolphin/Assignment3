@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Table, Pagination } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 
 
 function Restaurants(props) {
+  let history = useHistory();
+
   const perPage = 10;
   const [restaurants, setRestaurants] = useState([]);
   const [page, setPage] = useState(1);
+  const [restaurantBorough, setRestaurantBorough] = useState("");
   //M<ust include borough in future using props.query. use the "query-string" module 
   //https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}borough=${props.query.borough}
+
+ 
 
   function previousPage()  {
     if (page > 1) {
@@ -16,6 +22,7 @@ function Restaurants(props) {
     }
   };
 
+
   function nextPage() {
     setPage(page + 1);
     getResults();
@@ -23,13 +30,15 @@ function Restaurants(props) {
 
   function getResults() {
     //fetch(`https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}`)
-    fetch(`
+    /*fetch(`
     https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}
-    `)
+    `)*/
+    fetch(`https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}`)
       .then(function (res) {
         return res.json();
       })
       .then(function (obj) {
+        //console.log(props.query.borough);
         console.log(obj);
         setRestaurants(obj)
 
@@ -43,7 +52,7 @@ function Restaurants(props) {
 
   useEffect(() => {
     getResults();
-    
+
   }, []);
   return (
 
@@ -68,12 +77,14 @@ function Restaurants(props) {
         </thead>
         <tbody>
           {restaurants.map((user, index) =>
-            <tr key={index}>
+           
+            <tr key={index} onClick={()=>{ history.push(`/restaurant/${user._id}`)}}>
               <td>{user.name}</td>
               <td>{user.address.building} {user.address.street}</td>
               <td>{user.borough}</td>
               <td>{user.cuisine}</td>
             </tr>
+         
           )
           }
   

@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import './App.css';
 
 import { Route, Switch } from 'react-router-dom';
@@ -12,15 +12,12 @@ import Restaurants from './Restaurants';
 import NotFound from './NotFound';
 import Restaurant from './Restaurant';
 
-// //const [searchString, setsearchString] = useState("");  
-// function handleSubmit(e){
-//   const [searchString, setsearchString] = useState("");  
-//   e.preventDefault();
-//   setsearchString("");
-// }
-
 class App extends Component {
 
+
+  
+
+  
   render() {
     return (
       <>
@@ -38,7 +35,7 @@ class App extends Component {
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
-
+            
           </Navbar.Collapse>
         </Navbar>
         <Container>
