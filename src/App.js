@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, setState } from 'react';
 import './App.css';
 
 import { Route, Switch } from 'react-router-dom';
@@ -15,9 +15,24 @@ import Restaurant from './Restaurant';
 class App extends Component {
 
 
-  
+  constructor(props){
+    super(props);
+    this.state = {value: ""};
 
-  
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  searchString = this.state.searchString
   render() {
     return (
       <>
@@ -35,7 +50,11 @@ class App extends Component {
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
-            
+            <Form inline>
+              <FormControl type="text" placeholder="Borough" className="mr-sm-2" value={value}
+                 />
+              <Button type="submit" variant="outline-success">Search</Button>
+            </Form>
           </Navbar.Collapse>
         </Navbar>
         <Container>
