@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Table, Pagination } from 'react-bootstrap';
 import { useHistory } from "react-router-dom";
-
+import queryString from 'query-string';
 
 function Restaurants(props) {
   let history = useHistory();
@@ -12,7 +12,7 @@ function Restaurants(props) {
   const [restaurantBorough, setRestaurantBorough] = useState("");
   //M<ust include borough in future using props.query. use the "query-string" module 
   //https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}borough=${props.query.borough}
-
+  
  
 
   function previousPage()  {
@@ -29,10 +29,12 @@ function Restaurants(props) {
   }
 
   function getResults() {
+    console.log(props.query)
     //fetch(`https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}`)
     /*fetch(`
     https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}
     `)*/
+   // let checkBorough = "";
     fetch(`https://infinite-castle-65545.herokuapp.com/api/restaurants?page=${page}&perPage=${perPage}`)
       .then(function (res) {
         return res.json();

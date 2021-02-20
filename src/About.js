@@ -14,7 +14,10 @@ function About(props) {
         <Card.Title>About</Card.Title>
         <Card.Text>
           All about me - the developer. 
-          More information coming soon!
+          <br />
+          My name is Dominik Thibaudeau and I am currently studying Computer Programming at Seneca College in Toronto, Ontario.
+          <br />
+          At Seneca I have learned a few programming/scripting languages such as C, C++, Java and Javascript.
         </Card.Text>
       </Card.Body>
     </Card>

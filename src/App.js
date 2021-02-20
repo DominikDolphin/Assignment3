@@ -12,27 +12,27 @@ import Restaurants from './Restaurants';
 import NotFound from './NotFound';
 import Restaurant from './Restaurant';
 
+
 class App extends Component {
-
-
-  constructor(props){
+  
+  constructor(props) {
     super(props);
-    this.state = {value: ""};
-
+    this.state = {value: ''};
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({value: event});
   }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('Searched Borough: ' + this.state.value);
+    
   }
-
-  searchString = this.state.searchString
+ 
   render() {
     return (
       <>
@@ -50,9 +50,9 @@ class App extends Component {
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>
             </Nav>
-            <Form inline>
-              <FormControl type="text" placeholder="Borough" className="mr-sm-2" value={value}
-                 />
+            <Form onSubmit={(e) => {this.handleSubmit(e)}} inline>
+              <FormControl type="text" placeholder="Borough" className="mr-sm-2" value={this.state.value}
+                 onChange={(e) => {this.handleChange(e.target.value)}} />
               <Button type="submit" variant="outline-success">Search</Button>
             </Form>
           </Navbar.Collapse>
@@ -86,12 +86,5 @@ class App extends Component {
     );
   }
 }
-/*
-<Form onSubmit={handleSubmit} inline>
-              <FormControl type="text" placeholder="Borough" className="mr-sm-2" value={searchString}
-                onChange={(e) => setSearchString(e.target.value)} />
-              <Button type="submit" variant="outline-success">Search</Button>
-            </Form>
-*/
 
 export default App;
